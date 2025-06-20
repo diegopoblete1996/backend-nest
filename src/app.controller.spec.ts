@@ -29,6 +29,18 @@ describe('AppController', () => {
       expect(appController.getHello()).toBe('Hello World!!');
     });
 
+    it('Esto deberia retornar hola mundo en alemán"', () => {
+      expect(appController.getHelloAleman()).toBe('Hallo Welt');
+    });
+
+    it('Esto deberia retornar algo"', () => {
+      expect(appController.getHelloFrances()).toBe('mi mensaje de pruebas');
+    });
+
+     it('Esto deberia retornar hola mundo"', () => {
+      expect(appController.getHelloEspanol()).toBe('Hola Mundo!!');
+    });
+
     it('Deberia buscar un id por usuario', () => {
       expect(appController.getUser(2342)).toEqual({ id: 1, nombre: 'Loreto' });
       expect(mockDbService.getUser).toHaveBeenLastCalledWith(2342);

@@ -8,7 +8,7 @@ export class OperacionesController {
 
   @Get() // localhost:3000/operaciones?operacion=suma&a=10&b=40
   operar(
-    @Res() res: Response,
+    // @Res() res: Response,
     @Query('operacion') operacion: string,
     @Query('a') a: number,
     @Query('b') b: number,
@@ -16,13 +16,16 @@ export class OperacionesController {
     const calculo = this.operService.operar(operacion, +a, +b);
 
     if (calculo) {
-      return res
-        .status(200)
-        .json({ resultado: calculo, mensaje: 'operacion exitosa' });
+      // return res
+        // .status(200)
+        // .json({ resultado: calculo, mensaje: 'operacion exitosa' });
+        return { resultado: calculo, mensaje: 'operacion exitosa' };
     }
 
-    return res
-      .status(502)
-      .json({ resultado: NaN, mensaje: 'operacion no pudo ser calculada' });
+    return { resultado: NaN, mensaje: 'operacion no pudo ser calculada' };
+
+    // return res
+    //   .status(502)
+    //   .json({ resultado: NaN, mensaje: 'operacion no pudo ser calculada' });
   }
 }
