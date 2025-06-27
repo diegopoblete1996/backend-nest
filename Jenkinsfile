@@ -11,7 +11,7 @@ pipeline {
     stages{
         stage ("saludo a usuario") {
             steps {
-                sh 'echo "Comenzado mi Pipeline'
+                sh 'echo "Comenzado mi Pipeline"'
             }
         }
         stage ("salida de los saludos a usuario") {
