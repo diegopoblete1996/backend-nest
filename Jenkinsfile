@@ -1,22 +1,18 @@
 pipeline {
-
     agent any
-
-    environment {
+    // escenarios -> escenario -> pasos
+    environment{
         NPM_CONFIG_CACHE= "${WORKSPACE}/.npm"
     }
-
-    // escenarios -> escenario -> pasos
-
     stages{
         stage ("saludo a usuario") {
             steps {
-                sh 'echo "Comenzado mi Pipeline"'
+                sh 'echo "comenzado mi pipeline"'
             }
         }
         stage ("salida de los saludos a usuario") {
             steps {
-                sh 'echo "Saliendo de este grupo de escenarios"'
+                sh 'echo "saliendo de este grupo de escenarios"'
             }
         }
         stage ("proceso de build y test") {
@@ -27,21 +23,26 @@ pipeline {
                 }
             }
             stages {
-                stage ("instalación de dependencias"){
+                stage("instalacion de dependencias"){
                     steps {
                         sh 'npm ci'
                     }
                 }
-                stage ("Ejecución de pruebas"){
+                stage("ejecucion de pruebas"){
                     steps {
                         sh 'npm run test:cov'
                     }
                 }
-                 stage ("Construcción de la aplicación"){
+                stage("construccion de la aplicacion"){
                     steps {
                         sh 'npm run build'
                     }
                 }
+            }
+        }
+        stage ("build y push de imagen docker"){
+            steps {
+                sh "docker build -t backend-nest-cmd ."
             }
         }
     }
