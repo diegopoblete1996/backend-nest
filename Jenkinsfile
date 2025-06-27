@@ -2,6 +2,10 @@ pipeline {
 
     agent any
 
+    environment {
+        NPM_CONFIG_CACHE=
+    }
+
     // escenarios -> escenario -> pasos
 
     stages{
@@ -12,7 +16,7 @@ pipeline {
         }
         stage ("salida de los saludos a usuario") {
             steps {
-                sh 'echo "Saliendo de este grupo de escenarios'
+                sh 'echo "Saliendo de este grupo de escenarios"'
             }
         }
         stage ("proceso de build y test") {
